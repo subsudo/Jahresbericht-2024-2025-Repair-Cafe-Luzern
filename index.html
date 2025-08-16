@@ -42,7 +42,7 @@
             transition: opacity 0.25s ease;
         }
         .slider-dot {
-            transition: background-color 0.2s;
+            transition: background-color: 0.2s;
         }
         .slider-dot.active {
             background-color: #0056b3;
@@ -108,7 +108,7 @@
     <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <img src="assets/Banner Highres Narrow.png" alt="Logo Icon" class="h-10">
+                <img src="assets/banner-highres-narrow.png" alt="Logo Icon" class="h-10">
                 <span class="font-bold text-lg text-gray-700 hidden sm:block">Repair Café Luzern</span>
             </div>
             <div class="space-x-2 sm:space-x-4 text-xs sm:text-base text-gray-600 font-semibold">
@@ -126,7 +126,7 @@
         <!-- Hero Section -->
         <section class="bg-hero text-center py-20 sm:py-32">
             <div class="container mx-auto px-6">
-                <img src="assets/Banner Highres Narrow.png" alt="Repair Café Luzern Logo" class="max-w-md sm:max-w-lg mx-auto mb-6">
+                <img src="assets/banner-highres-narrow.png" alt="Repair Café Luzern Logo" class="max-w-md sm:max-w-lg mx-auto mb-6">
                 <h1 class="text-4xl md:text-6xl font-bold text-gray-800">Jahresbericht 2025</h1>
                 <p class="text-lg md:text-xl text-gray-600 mt-4 max-w-lg mx-auto">Ein Rückblick auf 10 Jahre gemeinsames Reparieren, Lernen und Ressourcen schonen in Luzern.</p>
             </div>
@@ -142,8 +142,8 @@
                         <p class="text-gray-600">Wir blicken dankbar auf zehn Jahre voller gelungener Reparaturen, wertvoller Begegnungen und weitergegebenem Wissen zurück.</p>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
-                        <img src="assets/10 Jahre Repaircafe - 1.Event.png" alt="Erstes Repair Café Event" class="rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openModal(this.src)">
-                        <img src="assets/10 Jahre Repaircafe - 1.Event bild 2.png" alt="Freiwillige bei der Arbeit" class="rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300 mt-8" onclick="openModal(this.src)">
+                        <img src="assets/10-jahre-repaircafe-event.png" alt="Erstes Repair Café Event" class="rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openModal(this.src)">
+                        <img src="assets/10-jahre-repaircafe-event-bild-2.png" alt="Freiwillige bei der Arbeit" class="rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300 mt-8" onclick="openModal(this.src)">
                     </div>
                 </div>
             </div>
@@ -206,7 +206,7 @@
                     <div class="bg-white p-6 rounded-lg shadow-md fade-in-section">
                         <h3 class="text-2xl font-bold text-gray-700 mb-2 text-center">Wachstum der Reparaturversuche</h3>
                         <p class="text-center text-gray-600 mb-4 max-w-2xl mx-auto">Diese Grafik zeigt den wachsenden Berg der kumulativen Reparaturversuche seit 2015. Die stetig steigende Kurve zeigt eindrücklich, wie das Vertrauen und die Bekanntheit des Repair Cafés über die Jahre gewachsen sind.</p>
-                        <img src="assets/Statistik Reparatuversuche im RepairCafe 2015 bis 2025.png" alt="Kumulative Anzahl Reparaturversuche" class="rounded-lg shadow-md cursor-pointer mx-auto max-w-3xl" onclick="openModal(this.src)">
+                        <img src="assets/statistik-reparaturversuche-repaircafe-2015-2025.png" alt="Kumulative Anzahl Reparaturversuche" class="rounded-lg shadow-md cursor-pointer mx-auto max-w-3xl" onclick="openModal(this.src)">
                     </div>
 
                     <div class="grid lg:grid-cols-2 gap-12 items-center fade-in-section">
@@ -229,13 +229,13 @@
                         <div class="text-center bg-white p-6 rounded-lg shadow-md flex flex-col">
                             <h3 class="text-2xl font-bold text-gray-700 mb-4">Was wurde repariert?</h3>
                             <p class="text-gray-600 mb-4">Von Audio-Geräten bis zu Hosen – die Vielfalt der reparierten Gegenstände zeigt die breite Expertise unserer Helfer.</p>
-                            <img src="assets/Gerätemix 2024 2025 Statistik.png" alt="Gerätemix 2024/2025" class="rounded-lg shadow-md cursor-pointer mt-auto" onclick="openModal(this.src)">
+                            <img src="assets/geraetemix-2024-2025-statistik.png" alt="Gerätemix 2024/2025" class="rounded-lg shadow-md cursor-pointer mt-auto" onclick="openModal(this.src)">
                         </div>
                         <div class="text-center bg-white p-6 rounded-lg shadow-md flex flex-col">
                             <h3 class="text-2xl font-bold text-gray-700 mb-4">Herkunft unserer Gäste</h3>
                              <div id="herkunftSlider" class="relative mt-auto">
-                                 <img id="imgGrafik" src="assets/Besucherstatistik nach Wohnort Anzahl Besucher nach Ort.png" alt="Besucherstatistik nach Wohnort" class="rounded-lg shadow-md cursor-pointer w-full" onclick="openModal(this.src)">
-                                 <img id="imgKarte" src="assets/Besucherstatistik nach Wohnort übersichtskarte.png" alt="Übersichtskarte der Besucherherkunft" class="rounded-lg shadow-md cursor-pointer w-full hidden" onclick="openModal(this.src)">
+                                 <img id="imgGrafik" src="assets/besucherstatistik-nach-wohnort-anzahl-besucher-nach-ort.png" alt="Besucherstatistik nach Wohnort" class="rounded-lg shadow-md cursor-pointer w-full" onclick="openModal(this.src)">
+                                 <img id="imgKarte" src="assets/besucherstatistik-nach-wohnort-uebersichtskarte.png" alt="Übersichtskarte der Besucherherkunft" class="rounded-lg shadow-md cursor-pointer w-full hidden" onclick="openModal(this.src)">
                              </div>
                             <div id="sliderDots" class="flex justify-center space-x-2 mt-4">
                                  <button class="slider-dot active h-3 w-3 bg-gray-300 rounded-full" data-slide="0"></button>
@@ -334,17 +334,17 @@
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 items-stretch">
                     <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col">
-                         <img src="assets/Neueröffnung Repair Café Horw.png" alt="Neueröffnung des Repair Cafés in Horw" class="rounded-lg shadow-md mb-4 cursor-pointer object-contain h-48 w-full" onclick="openModal(this.src)">
+                         <img src="assets/neueroeffnung-repaircafe-horw.png" alt="Neueröffnung des Repair Cafés in Horw" class="rounded-lg shadow-md mb-4 cursor-pointer object-contain h-48 w-full" onclick="openModal(this.src)">
                         <h3 class="text-xl font-bold text-gray-700 mb-2">Starthilfe in Horw</h3>
                         <p class="text-gray-600">Wir freuen uns, dass wir bei der Neueröffnung des Repair Cafés in Horw Starthilfe leisten konnten. Ursina, Werner, Martin und Ulrich waren vor Ort, um ihre Erfahrung zu teilen.</p>
                     </div>
                      <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col">
-                        <img src="assets/Repair Café an der Hochschule Luzern - Blockwoche Nachhaltigkeit.png" alt="Vortrag an der Hochschule Luzern" class="rounded-lg shadow-md mb-4 cursor-pointer object-contain h-48 w-full" onclick="openModal(this.src)">
+                        <img src="assets/repaircafe-hochschule-luzern-blockwoche-nachhaltigkeit.png" alt="Vortrag an der Hochschule Luzern" class="rounded-lg shadow-md mb-4 cursor-pointer object-contain h-48 w-full" onclick="openModal(this.src)">
                         <h3 class="text-xl font-bold text-gray-700 mb-2">Wissenstransfer</h3>
                         <p class="text-gray-600">Ulrich Scholbe und David Clormann hielten Vorträge an der HSLU, während an der ISS Rain/Hildisrieden Workshops für Schüler stattfanden, um junge Menschen fürs Reparieren zu begeistern.</p>
                     </div>
                     <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col">
-                         <img src="assets/Marktplatz 60 Plus.png" alt="Marktstand" class="rounded-lg shadow-md mb-4 cursor-pointer object-contain h-48 w-full" onclick="openModal(this.src)">
+                         <img src="assets/marktplatz-60plus.png" alt="Marktstand" class="rounded-lg shadow-md mb-4 cursor-pointer object-contain h-48 w-full" onclick="openModal(this.src)">
                         <h3 class="text-xl font-bold text-gray-700 mb-2">Präsenz in der Region</h3>
                         <p class="text-gray-600">Mit einem Marktstand am "Marktplatz 60plus" in der Luzerner Kornschütte, betreut von Helen und Ulrich, konnten wir zahlreiche neue Kontakte knüpfen und für unsere Sache werben.</p>
                     </div>
@@ -370,10 +370,10 @@
                             </p>
                         </div>
                         <div id="teamSlideshow" class="relative rounded-lg shadow-xl overflow-hidden">
-                           <img src="assets/Screenshot 2025-05-19 104939.png" alt="Impression aus dem Repair Café 1" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out">
-                           <img src="assets/Screenshot 2025-05-19 104955.png" alt="Impression aus dem Repair Café 2" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
-                           <img src="assets/Screenshot 2025-05-19 105008.png" alt="Impression aus dem Repair Café 3" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
-                           <img src="assets/Screenshot 2025-05-19 105028.png" alt="Impression aus dem Repair Café 4" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                           <img src="assets/screenshot-2025-05-19-104939.png" alt="Impression aus dem Repair Café 1" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out">
+                           <img src="assets/screenshot-2025-05-19-104955.png" alt="Impression aus dem Repair Café 2" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                           <img src="assets/screenshot-2025-05-19-105008.png" alt="Impression aus dem Repair Café 3" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                           <img src="assets/screenshot-2025-05-19-105028.png" alt="Impression aus dem Repair Café 4" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
                         </div>
                     </div>
                     <!-- New "Blick nach vorn" Section -->
@@ -661,3 +661,4 @@
 
 </body>
 </html>
+
