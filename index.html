@@ -18,11 +18,14 @@
             font-family: 'Roboto Slab', serif;
         }
         .text-rc-blue-dark { color: #0056b3; }
-        
+
+        /* Bilder verhalten sich responsiv */
+        img { max-width: 100%; height: auto; display: block; }
+
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
         .fade-in-section.is-visible {
             opacity: 1;
@@ -32,11 +35,20 @@
             background-color: #f0f4f8;
             background-image: radial-gradient(#d0dce7 1px, transparent 1px);
             background-size: 16px 16px;
+            /* Parallax kann auf iOS ruckeln; auf kleinen Screens deaktivieren */
+            background-attachment: fixed;
+            background-position: center;
+        }
+        @media (max-width: 768px) {
+            .bg-hero { background-attachment: scroll; }
         }
         .chart-container {
             position: relative;
             height: 400px;
             width: 100%;
+        }
+        @media (max-width: 640px) {
+            .chart-container { height: 300px; }
         }
         .modal {
             transition: opacity 0.25s ease;
@@ -46,12 +58,6 @@
         }
         .slider-dot.active {
             background-color: #0056b3;
-        }
-        .impression-image {
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
         }
         .info-tooltip {
             position: relative;
@@ -100,18 +106,35 @@
             color: #28a745;
             font-weight: bold;
         }
+
+        /* Animations for scroll-triggered items */
+        .animate-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .is-visible .animate-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Staggered delay for items */
+        .is-visible .animate-item:nth-child(1) { transition-delay: 0.2s; }
+        .is-visible .animate-item:nth-child(2) { transition-delay: 0.4s; }
+        .is-visible .animate-item:nth-child(3) { transition-delay: 0.6s; }
+        .is-visible .animate-item:nth-child(4) { transition-delay: 0.8s; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-800 overflow-x-hidden">
 
     <!-- Header & Navigation -->
     <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <img src="assets/banner-highres-narrow.png" alt="Logo Icon" class="h-10">
-                <span class="font-bold text-lg text-gray-700 hidden sm:block">Repair Café Luzern</span>
+            <div class="flex items-center space-x-2 min-w-0">
+                <img src="assets/banner-highres-narrow.png" alt="Logo Icon" class="h-10 w-auto">
+                <span class="font-bold text-lg text-gray-700 hidden sm:block truncate">Repair Café Luzern</span>
             </div>
-            <div class="space-x-2 sm:space-x-4 text-xs sm:text-base text-gray-600 font-semibold">
+            <!-- Links umbrechen, damit kein horizontaler Overflow entsteht -->
+            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs sm:text-base text-gray-600 font-semibold justify-end">
                 <a href="#10-jahre" class="hover:text-rc-blue-dark transition">Über Uns</a>
                 <a href="#statistiken" class="hover:text-rc-blue-dark transition">Statistiken</a>
                 <a href="#finanzen" class="hover:text-rc-blue-dark transition">Finanzen</a>
@@ -126,7 +149,7 @@
         <!-- Hero Section -->
         <section class="bg-hero text-center py-20 sm:py-32">
             <div class="container mx-auto px-6">
-                <img src="assets/banner-highres-narrow.png" alt="Repair Café Luzern Logo" class="max-w-md sm:max-w-lg mx-auto mb-6">
+                <img src="assets/banner-highres-narrow.png" alt="Repair Café Luzern Logo" class="mx-auto h-auto w-full max-w-[320px] sm:max-w-md md:max-w-lg mb-6">
                 <h1 class="text-4xl md:text-6xl font-bold text-gray-800">Jahresbericht 2025</h1>
                 <p class="text-lg md:text-xl text-gray-600 mt-4 max-w-lg mx-auto">Ein Rückblick auf 10 Jahre gemeinsames Reparieren, Lernen und Ressourcen schonen in Luzern.</p>
             </div>
@@ -164,15 +187,15 @@
 
                 <!-- Animated Counters -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center fade-in-section">
-                    <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="bg-white p-8 rounded-lg shadow-md animate-item">
                         <div class="text-5xl font-bold text-rc-blue-dark" data-count="3900">0</div>
                         <div class="text-gray-500 mt-2 text-lg">Reparaturannahmen seit 2015</div>
                     </div>
-                    <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="bg-white p-8 rounded-lg shadow-md animate-item">
                         <div class="text-5xl font-bold text-green-600" data-count="170000">0</div>
                         <div class="text-gray-500 mt-2 text-lg">kg CO₂ eingespart</div>
                     </div>
-                    <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="bg-white p-8 rounded-lg shadow-md animate-item">
                         <div class="text-5xl font-bold text-yellow-600" data-count="250000">0</div>
                         <div class="text-gray-500 mt-2 text-lg">Franken eingespart (ca.)</div>
                     </div>
@@ -182,19 +205,19 @@
                 <div class="fade-in-section text-center">
                     <h3 class="text-2xl font-bold text-gray-700 mb-6">Was bedeuten diese Zahlen?</h3>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center animate-item">
                             <span class="text-6xl mb-2">🐘</span>
                             <p class="font-semibold text-gray-700">Das Gewicht von 30 afrikanischen Elefanten an CO₂ eingespart.</p>
                         </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center animate-item">
                             <span class="text-6xl mb-2">🌍</span>
                             <p class="font-semibold text-gray-700">Entspricht ca. 25 Erdumrundungen mit dem Auto.</p>
                         </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center animate-item">
                             <span class="text-6xl mb-2">✈️</span>
                             <p class="font-semibold text-gray-700">Vergleichbar mit 128 Flugreisen von Zürich nach New York.</p>
                         </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center animate-item">
                             <span class="text-6xl mb-2">☕</span>
                             <p class="font-semibold text-gray-700">Vom gesparten Geld könnte man über 55'000 Kaffees im Bistro Neubad kaufen.</p>
                         </div>
@@ -206,7 +229,7 @@
                     <div class="bg-white p-6 rounded-lg shadow-md fade-in-section">
                         <h3 class="text-2xl font-bold text-gray-700 mb-2 text-center">Wachstum der Reparaturversuche</h3>
                         <p class="text-center text-gray-600 mb-4 max-w-2xl mx-auto">Diese Grafik zeigt den wachsenden Berg der kumulativen Reparaturversuche seit 2015. Die stetig steigende Kurve zeigt eindrücklich, wie das Vertrauen und die Bekanntheit des Repair Cafés über die Jahre gewachsen sind.</p>
-                        <img src="assets/statistik-reparaturversuche-repaircafe-2015-2025.png" alt="Kumulative Anzahl Reparaturversuche" class="rounded-lg shadow-md cursor-pointer mx-auto max-w-3xl" onclick="openModal(this.src)">
+                        <img src="assets/statistik-reparaturversuche-repaircafe-2015-2025.png" alt="Kumulative Anzahl Reparaturversuche" class="mx-auto h-auto w-[90%] max-w-[520px] sm:w-full sm:max-w-2xl lg:max-w-3xl rounded-lg shadow-md cursor-pointer" onclick="openModal(this.src)">
                     </div>
 
                     <div class="grid lg:grid-cols-2 gap-12 items-center fade-in-section">
@@ -222,7 +245,7 @@
 
                     <div class="bg-white p-6 rounded-lg shadow-md fade-in-section">
                         <h3 class="text-2xl font-bold text-gray-700 mb-4 text-center">Events 2024/2025 nach Standort</h3>
-                         <div class="chart-container"><canvas id="eventsChart"></canvas></div>
+                        <div class="chart-container"><canvas id="eventsChart"></canvas></div>
                     </div>
 
                     <div class="grid lg:grid-cols-2 gap-12 items-stretch fade-in-section">
@@ -233,13 +256,13 @@
                         </div>
                         <div class="text-center bg-white p-6 rounded-lg shadow-md flex flex-col">
                             <h3 class="text-2xl font-bold text-gray-700 mb-4">Herkunft unserer Gäste</h3>
-                             <div id="herkunftSlider" class="relative mt-auto">
-                                 <img id="imgGrafik" src="assets/besucherstatistik-nach-wohnort-anzahl-besucher-nach-ort.png" alt="Besucherstatistik nach Wohnort" class="rounded-lg shadow-md cursor-pointer w-full" onclick="openModal(this.src)">
-                                 <img id="imgKarte" src="assets/besucherstatistik-nach-wohnort-uebersichtskarte.png" alt="Übersichtskarte der Besucherherkunft" class="rounded-lg shadow-md cursor-pointer w-full hidden" onclick="openModal(this.src)">
-                             </div>
+                            <div id="herkunftSlider" class="relative mt-auto">
+                                <img id="imgGrafik" src="assets/besucherstatistik-nach-wohnort-anzahl-besucher-nach-ort.png" alt="Besucherstatistik nach Wohnort" class="rounded-lg shadow-md cursor-pointer w-full" onclick="openModal(this.src)">
+                                <img id="imgKarte" src="assets/besucherstatistik-nach-wohnort-uebersichtskarte.png" alt="Übersichtskarte der Besucherherkunft" class="rounded-lg shadow-md cursor-pointer w-full hidden" onclick="openModal(this.src)">
+                            </div>
                             <div id="sliderDots" class="flex justify-center space-x-2 mt-4">
-                                 <button class="slider-dot active h-3 w-3 bg-gray-300 rounded-full" data-slide="0"></button>
-                                 <button class="slider-dot h-3 w-3 bg-gray-300 rounded-full" data-slide="1"></button>
+                                <button class="slider-dot active h-3 w-3 bg-gray-300 rounded-full" data-slide="0"></button>
+                                <button class="slider-dot h-3 w-3 bg-gray-300 rounded-full" data-slide="1"></button>
                             </div>
                         </div>
                     </div>
@@ -303,7 +326,7 @@
                                     <td class="p-3 text-right">284.45</td>
                                     <td class="p-3 text-right">450.00</td>
                                 </tr>
-                                 <tr class="border-b">
+                                <tr class="border-b">
                                     <td class="p-3">Spezial Events</td>
                                     <td class="p-3 text-right">-</td>
                                     <td class="p-3 text-right">150.00</td>
@@ -333,18 +356,18 @@
                     <p class="text-lg text-gray-600 mt-4">Unser Engagement geht über die eigenen Veranstaltungen hinaus. Engagierte Mitglieder wie Ulrich Scholbe und weitere Helfer aus dem Team teilen ihr Wissen und unterstützen aktiv die Verbreitung der Reparatur-Idee in der ganzen Region.</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 items-stretch">
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col">
-                         <img src="assets/neueroeffnung-repaircafe-horw.png" alt="Neueröffnung des Repair Cafés in Horw" class="rounded-lg shadow-md mb-4 cursor-pointer object-contain h-48 w-full" onclick="openModal(this.src)">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col animate-item">
+                        <img src="assets/neueroeffnung-repaircafe-horw.png" alt="Neueröffnung des Repair Cafés in Horw" class="rounded-lg shadow-md mb-4 cursor-pointer object-contain h-48 w-full" onclick="openModal(this.src)">
                         <h3 class="text-xl font-bold text-gray-700 mb-2">Starthilfe in Horw</h3>
                         <p class="text-gray-600">Wir freuen uns, dass wir bei der Neueröffnung des Repair Cafés in Horw Starthilfe leisten konnten. Ursina, Werner, Martin und Ulrich waren vor Ort, um ihre Erfahrung zu teilen.</p>
                     </div>
-                     <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col animate-item">
                         <img src="assets/repaircafe-hochschule-luzern-blockwoche-nachhaltigkeit.png" alt="Vortrag an der Hochschule Luzern" class="rounded-lg shadow-md mb-4 cursor-pointer object-contain h-48 w-full" onclick="openModal(this.src)">
                         <h3 class="text-xl font-bold text-gray-700 mb-2">Wissenstransfer</h3>
                         <p class="text-gray-600">Ulrich Scholbe und David Clormann hielten Vorträge an der HSLU, während an der ISS Rain/Hildisrieden Workshops für Schüler stattfanden, um junge Menschen fürs Reparieren zu begeistern.</p>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col">
-                         <img src="assets/marktplatz-60plus.png" alt="Marktstand" class="rounded-lg shadow-md mb-4 cursor-pointer object-contain h-48 w-full" onclick="openModal(this.src)">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col animate-item">
+                        <img src="assets/marktplatz-60plus.png" alt="Marktstand" class="rounded-lg shadow-md mb-4 cursor-pointer object-contain h-48 w-full" onclick="openModal(this.src)">
                         <h3 class="text-xl font-bold text-gray-700 mb-2">Präsenz in der Region</h3>
                         <p class="text-gray-600">Mit einem Marktstand am "Marktplatz 60plus" in der Luzerner Kornschütte, betreut von Helen und Ulrich, konnten wir zahlreiche neue Kontakte knüpfen und für unsere Sache werben.</p>
                     </div>
@@ -357,11 +380,11 @@
             <div class="container mx-auto px-6 fade-in-section">
                 <div class="text-center max-w-3xl mx-auto">
                     <h2 class="text-4xl font-bold text-rc-blue-dark">Team, Wahlen und der Blick nach vorn</h2>
-                    <p class="text-lg text-gray-600 mt-4">Ein engagiertes Team ist das Herz unseres Vereins. Mit personellen Wechseln und klaren Zielen stellen wir die Weichen für eine erfolgreiche Zukunft.</p>
+                    <p class="text-lg text-gray-600 mt-4">Ein engagiertes Team ist das Herz unseres Vereins. Wir danken für das Bisherige und freuen uns auf das Kommende. Gemeinsam wollen wir Bestehendes stärken und Neues wagen.</p>
                 </div>
                 <div class="max-w-5xl mx-auto">
-                    <div class="grid md:grid-cols-2 gap-12 mt-12 items-center">
-                        <div id="vorstandText">
+                    <div class="grid md:grid-cols-5 gap-12 mt-12 items-center">
+                        <div id="vorstandText" class="md:col-span-3">
                             <h3 class="text-2xl font-bold text-gray-700 mb-4">Wechsel im Vorstand</h3>
                             <p class="text-gray-600 space-y-3">
                                 <span>An der diesjährigen Generalversammlung kommt es zu wichtigen Wechseln. Wir danken unserer bisherigen Präsidentin <strong>Mirjana Lawless</strong> herzlich für ihren grossartigen Einsatz.</span>
@@ -369,11 +392,10 @@
                                 <span>Ein besonderer Dank gilt auch unserem scheidenden Revisor Ernst Krummenacher. Mit <strong>Philippe Hasler</strong> kandidiert ein erfahrener Nachfolger.</span>
                             </p>
                         </div>
-                        <div id="teamSlideshow" class="relative rounded-lg shadow-xl overflow-hidden">
-                           <img src="assets/screenshot-2025-05-19-104939.png" alt="Impression aus dem Repair Café 1" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out">
-                           <img src="assets/screenshot-2025-05-19-104955.png" alt="Impression aus dem Repair Café 2" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
-                           <img src="assets/screenshot-2025-05-19-105008.png" alt="Impression aus dem Repair Café 3" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
-                           <img src="assets/screenshot-2025-05-19-105028.png" alt="Impression aus dem Repair Café 4" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                        <div id="teamSlideshow" class="relative rounded-lg shadow-xl overflow-hidden md:col-span-2">
+                            <img src="assets/screenshot-2025-05-19-104955.png" alt="Impression aus dem Repair Café 2" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out">
+                            <img src="assets/screenshot-2025-05-19-105008.png" alt="Impression aus dem Repair Café 3" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                            <img src="assets/screenshot-2025-05-19-105028.png" alt="Impression aus dem Repair Café 4" class="team-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
                         </div>
                     </div>
                     <!-- New "Blick nach vorn" Section -->
@@ -401,31 +423,44 @@
     <!-- Image Modal -->
     <div id="imageModal" class="modal fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center opacity-0 pointer-events-none" onclick="closeModal()">
         <img id="modalImage" src="" alt="Vergrösserte Ansicht" class="max-w-[90%] max-h-[90%] object-contain rounded-lg">
-        <button class="absolute top-4 right-4 text-white text-4xl">&times;</button>
+        <button class="absolute top-4 right-4 text-white text-4xl" aria-label="Schliessen">&times;</button>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             Chart.register(ChartDataLabels);
 
-            // --- INTERSECTION OBSERVER FOR FADE-IN ANIMATIONS ---
-            const sections = document.querySelectorAll('.fade-in-section');
-            const observer = new IntersectionObserver((entries) => {
+            // --- ANIMATION OBSERVER ---
+            const animatedElements = document.querySelectorAll('.fade-in-section, .animate-item');
+            const animationObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                        
                         const counters = entry.target.querySelectorAll('[data-count]');
                         counters.forEach(counter => {
                             animateCounter(counter);
                         });
-                        observer.unobserve(entry.target);
+
+                        // Wenn Canvas sichtbar wird, Chart erzeugen
+                        if (entry.target.id && entry.target.id.endsWith('Chart')) {
+                            createChart(entry.target.id);
+                        }
+                        
+                        animationObserver.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.2 });
 
-            sections.forEach(section => {
-                observer.observe(section);
+            animatedElements.forEach(el => {
+                animationObserver.observe(el);
             });
+            
+            // Auch Canvas-Elemente beobachten
+            document.querySelectorAll('canvas').forEach(canvas => {
+                animationObserver.observe(canvas);
+            });
+
 
             // --- ANIMATED COUNTERS ---
             function animateCounter(counter) {
@@ -441,11 +476,7 @@
                         clearInterval(interval);
                         current = target;
                     }
-                    if (counter.innerHTML.includes('%')) {
-                         counter.innerText = Math.ceil(current) + '%';
-                    } else {
-                         counter.innerText = Math.ceil(current).toLocaleString('de-CH');
-                    }
+                    counter.innerText = Math.ceil(current).toLocaleString('de-CH');
                 }, 20);
             }
 
@@ -455,163 +486,167 @@
             const colorPink = '#ff95ca';
             const colorPurple = '#d4b5f5';
             
-            const ctxErfolg = document.getElementById('erfolgsChart');
-            if (ctxErfolg) {
-                new Chart(ctxErfolg, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Repariert', 'Teilweise repariert', 'Nicht repariert'],
-                        datasets: [{
-                            label: 'Anzahl',
-                            data: [464, 48, 224],
-                            backgroundColor: [colorBlue, colorPurple, colorPink],
-                            borderColor: '#ffffff',
-                            borderWidth: 4,
-                            hoverOffset: 4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { position: 'bottom', labels: { font: chartFont } },
-                            tooltip: { bodyFont: chartFont, titleFont: chartFont },
-                            datalabels: {
-                                formatter: (value, ctx) => {
-                                    let sum = 0;
-                                    let dataArr = ctx.chart.data.datasets[0].data;
-                                    dataArr.map(data => {
-                                        sum += data;
-                                    });
-                                    let percentage = (value*100 / sum).toFixed(1)+"%";
-                                    return percentage;
-                                },
-                                color: '#fff',
-                                font: {
-                                    weight: 'bold',
-                                    size: 14,
-                                    family: 'Inter'
+            const chartInitializations = {
+                erfolgsChart: function() {
+                    new Chart(document.getElementById('erfolgsChart'), {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Repariert', 'Teilweise repariert', 'Nicht repariert'],
+                            datasets: [{
+                                label: 'Anzahl',
+                                data: [464, 48, 224],
+                                backgroundColor: [colorBlue, colorPurple, colorPink],
+                                borderColor: '#ffffff',
+                                borderWidth: 4,
+                                hoverOffset: 4
+                            }]
+                        },
+                        options: {
+                            animation: {
+                                animateScale: true,
+                                animateRotate: true
+                            },
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { position: 'bottom', labels: { font: chartFont } },
+                                tooltip: { bodyFont: chartFont, titleFont: chartFont },
+                                datalabels: {
+                                    formatter: (value, ctx) => {
+                                        let sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                        let percentage = (value*100 / sum).toFixed(1)+"%";
+                                        return percentage;
+                                    },
+                                    color: '#fff',
+                                    font: { weight: 'bold', size: 14, family: 'Inter' }
                                 }
                             }
                         }
-                    }
-                });
-            }
-            
-            const ctxStandort = document.getElementById('standortChart');
-            if (ctxStandort) {
-                new Chart(ctxStandort, {
-                    type: 'bar',
-                    data: {
-                        labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
-                        datasets: [
-                            {
-                                label: 'Neubad',
-                                data: [120, 150, 175, 230, 260, 80, 70, 230, 330, 290, 370],
-                                backgroundColor: colorBlue,
-                            },
-                            {
-                                label: 'Bourbaki',
-                                data: [0, 0, 0, 0, 155, 105, 130, 230, 380, 250, 360],
-                                backgroundColor: colorPink,
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { position: 'bottom', labels: { font: chartFont } },
-                            tooltip: { bodyFont: chartFont, titleFont: chartFont },
-                            datalabels: { display: false }
+                    });
+                },
+                standortChart: function() {
+                    new Chart(document.getElementById('standortChart'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                            datasets: [
+                                { label: 'Neubad', data: [120, 150, 175, 230, 260, 80, 70, 230, 330, 290, 370], backgroundColor: colorBlue },
+                                { label: 'Bourbaki', data: [0, 0, 0, 0, 155, 105, 130, 230, 380, 250, 360], backgroundColor: colorPink }
+                            ]
                         },
-                        scales: {
-                            x: { stacked: true, ticks: { font: chartFont } },
-                            y: { stacked: true, ticks: { font: chartFont } }
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: {
+                                duration: 1600,
+                                easing: 'easeOutCubic',
+                                delay: (context) => {
+                                    if (context.type !== 'data' || context.mode !== 'default') return 0;
+                                    const i = context.dataIndex || 0;
+                                    const d = context.datasetIndex || 0;
+                                    return i * 140 + d * 50; // links→rechts Staffelung
+                                }
+                            },
+                            animations: {
+                                y: {
+                                    from: (ctx) => ctx.chart.scales.y.getPixelForValue(0) // von der 0-Linie nach oben
+                                },
+                                height: { from: 0 }
+                            },
+                            plugins: {
+                                legend: { position: 'bottom', labels: { font: chartFont } },
+                                tooltip: { bodyFont: chartFont, titleFont: chartFont },
+                                datalabels: { display: false }
+                            },
+                            scales: {
+                                x: { stacked: true, ticks: { font: chartFont } },
+                                y: { stacked: true, beginAtZero: true, ticks: { font: chartFont } }
+                            }
                         }
-                    }
-                });
-            }
+                    });
+                },
+                eventsChart: function() {
+                    const eventData = [
+                        { location: 'Neubad', value: 54 }, { location: 'Neubad', value: 41 }, { location: 'Bourbaki', value: 41 }, 
+                        { location: 'Bourbaki', value: 40 }, { location: 'Neubad', value: 49 }, { location: 'Neubad', value: 37 }, 
+                        { location: 'Bourbaki', value: 44 }, { location: 'Neubad', value: 38 }, { location: 'Bourbaki', value: 29 },
+                        { location: 'Neubad', value: 27 }, { location: 'Bourbaki', value: 41 }, { location: 'Neubad', value: 46 },
+                        { location: 'Bourbaki', value: 47 }, { location: 'Neubad', value: 42 }, { location: 'Bourbaki', value: 41 },
+                        { location: 'Neubad', value: 34 }, { location: 'Bourbaki', value: 48 }
+                    ];
+                    new Chart(document.getElementById('eventsChart'), {
+                        type: 'bar',
+                        data: {
+                            labels: ["25. Mai", "7. Sep", "21. Sep", "12. Okt", "26. Okt", "16. Nov", "30. Nov", "14. Dez", "28. Dez", "18. Jan", "1. Feb", "22. Feb", "8. März", "22. März", "5. April", "26. April", "10. Mai"],
+                            datasets: [{
+                                label: 'Anzahl Reparaturen',
+                                data: eventData.map(d => d.value),
+                                backgroundColor: eventData.map(d => d.location === 'Neubad' ? colorBlue : colorPink),
+                                barPercentage: 0.5,
+                                categoryPercentage: 0.8
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: {
+                                duration: 1600,
+                                easing: 'easeOutCubic',
+                                delay: (context) => {
+                                    if (context.type !== 'data' || context.mode !== 'default') return 0;
+                                    const i = context.dataIndex || 0;
+                                    return i * 130; // strikt links→rechts
+                                }
+                            },
+                            animations: {
+                                y: {
+                                    from: (ctx) => ctx.chart.scales.y.getPixelForValue(0)
+                                },
+                                height: { from: 0 }
+                            },
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: { 
+                                    bodyFont: chartFont, 
+                                    titleFont: chartFont,
+                                    callbacks: {
+                                        label: function(context) {
+                                            const location = eventData[context.dataIndex].location;
+                                            return `${location}: ${context.parsed.y}`;
+                                        }
+                                    }
+                                },
+                                datalabels: {
+                                    anchor: 'end', align: 'top', color: '#333',
+                                    font: { weight: 'bold', size: 10 }
+                                }
+                            },
+                            scales: {
+                                x: { ticks: { font: chartFont } },
+                                y: { beginAtZero: true, ticks: { font: chartFont } }
+                            }
+                        }
+                    });
+                }
+            };
 
-            const ctxEvents = document.getElementById('eventsChart');
-            if (ctxEvents) {
-                const eventData = [
-                    { location: 'Neubad', value: 54 }, { location: 'Neubad', value: 41 }, { location: 'Bourbaki', value: 41 }, 
-                    { location: 'Bourbaki', value: 40 }, { location: 'Neubad', value: 49 }, { location: 'Neubad', value: 37 }, 
-                    { location: 'Bourbaki', value: 44 }, { location: 'Neubad', value: 38 }, { location: 'Bourbaki', value: 29 },
-                    { location: 'Neubad', value: 27 }, { location: 'Bourbaki', value: 41 }, { location: 'Neubad', value: 46 },
-                    { location: 'Bourbaki', value: 47 }, { location: 'Neubad', value: 42 }, { location: 'Bourbaki', value: 41 },
-                    { location: 'Neubad', value: 34 }, { location: 'Bourbaki', value: 48 }
-                ];
-
-                new Chart(ctxEvents, {
-                    type: 'bar',
-                    data: {
-                        labels: ["25. Mai", "7. Sep", "21. Sep", "12. Okt", "26. Okt", "16. Nov", "30. Nov", "14. Dez", "28. Dez", "18. Jan", "1. Feb", "22. Feb", "8. März", "22. März", "5. April", "26. April", "10. Mai"],
-                        datasets: [{
-                            label: 'Anzahl Reparaturen',
-                            data: eventData.map(d => d.value),
-                            backgroundColor: eventData.map(d => d.location === 'Neubad' ? colorBlue : colorPink),
-                            barPercentage: 0.5,
-                            categoryPercentage: 0.8
-                        }]
-                    },
-                     options: {
-                         responsive: true,
-                         maintainAspectRatio: false,
-                         plugins: {
-                             legend: { display: false },
-                             tooltip: { 
-                                 bodyFont: chartFont, 
-                                 titleFont: chartFont,
-                                 callbacks: {
-                                     label: function(context) {
-                                         let label = context.dataset.label || '';
-                                         if (label) {
-                                             label += ': ';
-                                         }
-                                         if (context.parsed.y !== null) {
-                                             label += context.parsed.y;
-                                         }
-                                         const location = eventData[context.dataIndex].location;
-                                         return `${location}: ${context.parsed.y}`;
-                                     }
-                                 }
-                             },
-                             datalabels: {
-                                 anchor: 'end',
-                                 align: 'top',
-                                 color: '#333',
-                                 font: {
-                                     weight: 'bold',
-                                     size: 10
-                                 }
-                             }
-                         },
-                         scales: {
-                             x: { ticks: { font: chartFont } },
-                             y: { ticks: { font: chartFont }, beginAtZero: true }
-                         }
-                    }
-                });
+            let createdCharts = {};
+            function createChart(chartId) {
+                if (!createdCharts[chartId]) {
+                    chartInitializations[chartId]();
+                    createdCharts[chartId] = true;
+                }
             }
 
             // --- GUEST ORIGIN SLIDER ---
             const sliderDots = document.querySelectorAll('.slider-dot');
             const slides = [document.getElementById('imgGrafik'), document.getElementById('imgKarte')];
-            
             sliderDots.forEach(dot => {
                 dot.addEventListener('click', () => {
                     const slideIndex = dot.dataset.slide;
-                    
                     slides.forEach((slide, index) => {
-                        if (index == slideIndex) {
-                            slide.classList.remove('hidden');
-                        } else {
-                            slide.classList.add('hidden');
-                        }
+                        slide.classList.toggle('hidden', index != slideIndex);
                     });
-
                     sliderDots.forEach(d => d.classList.remove('active'));
                     dot.classList.add('active');
                 });
@@ -624,9 +659,11 @@
             let currentSlide = 0;
 
             function matchHeights() {
-                if (textBlock && slideshowContainer) {
+                if (window.innerWidth > 768 && textBlock && slideshowContainer) {
                     const textHeight = textBlock.offsetHeight;
                     slideshowContainer.style.height = `${textHeight}px`;
+                } else {
+                    slideshowContainer.style.height = '300px'; // Fallback für Mobile
                 }
             }
 
@@ -639,21 +676,18 @@
             if (teamSlides.length > 0) {
                 matchHeights();
                 window.addEventListener('resize', matchHeights);
-                setInterval(nextSlide, 4000); // Change image every 4 seconds
+                setInterval(nextSlide, 4000);
             }
-
         });
 
         // --- IMAGE MODAL LOGIC ---
         const modal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
-
         window.openModal = function(src) {
             if (!src) return;
             modalImage.src = src;
             modal.classList.remove('opacity-0', 'pointer-events-none');
         }
-
         window.closeModal = function() {
             modal.classList.add('opacity-0', 'pointer-events-none');
         }
@@ -661,4 +695,3 @@
 
 </body>
 </html>
-
