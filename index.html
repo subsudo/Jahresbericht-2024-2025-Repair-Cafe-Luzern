@@ -234,7 +234,7 @@
 
                     <div class="grid lg:grid-cols-2 gap-12 items-center fade-in-section">
                         <div class="bg-white p-6 rounded-lg shadow-md">
-                            <h3 class="text-2xl font-bold text-gray-700 mb-4 text-center">Erfolgsstatistik 2024/25</h3>
+                            <h3 class="text-2xl font-bold text-gray-700 mb-4 text-center">Erfolgsstatistik 2024–2025</h3>
                             <div class="chart-container"><canvas id="erfolgsChart"></canvas></div>
                         </div>
                         <div class="bg-white p-6 rounded-lg shadow-md">
@@ -244,18 +244,18 @@
                     </div>
 
                     <div class="bg-white p-6 rounded-lg shadow-md fade-in-section">
-                        <h3 class="text-2xl font-bold text-gray-700 mb-4 text-center">Anzahl angenommener Gegenstände nach Standort (2024/2025)</h3>
+                        <h3 class="text-2xl font-bold text-gray-700 mb-4 text-center">Anzahl angenommener Gegenstände nach Standort (2024–2025)</h3>
                         <div class="chart-container"><canvas id="eventsChart"></canvas></div>
                     </div>
 
                     <div class="grid lg:grid-cols-2 gap-12 items-stretch fade-in-section">
                         <div class="text-center bg-white p-6 rounded-lg shadow-md flex flex-col">
-                            <h3 class="text-2xl font-bold text-gray-700 mb-4">Was wurde repariert?</h3>
+                            <h3 class="text-2xl font-bold text-gray-700 mb-4">Was wurde repariert (2024–2025)?</h3>
                             <p class="text-gray-600 mb-4">Von Audio-Geräten bis zu Hosen – die Vielfalt der reparierten Gegenstände zeigt die breite Expertise unserer Helfer.</p>
-                            <img src="assets/geraetemix-2024-2025-statistik.png" alt="Gerätemix 2024/2025" class="rounded-lg shadow-md cursor-pointer mt-auto" onclick="openModal(this.src)">
+                            <img src="assets/geraetemix-2024-2025-statistik.png" alt="Gerätemix 2024–2025" class="rounded-lg shadow-md cursor-pointer mt-auto" onclick="openModal(this.src)">
                         </div>
                         <div class="text-center bg-white p-6 rounded-lg shadow-md flex flex-col">
-                            <h3 class="text-2xl font-bold text-gray-700 mb-4">Herkunft unserer Gäste</h3>
+                            <h3 class="text-2xl font-bold text-gray-700 mb-4">Herkunft unserer Gäste (2024–2025)</h3>
                             <div id="herkunftSlider" class="relative mt-auto">
                                 <img id="imgGrafik" src="assets/besucherstatistik-nach-wohnort-anzahl-besucher-nach-ort.png" alt="Besucherstatistik nach Wohnort" class="rounded-lg shadow-md cursor-pointer w-full" onclick="openModal(this.src)">
                                 <img id="imgKarte" src="assets/besucherstatistik-nach-wohnort-uebersichtskarte.png" alt="Übersichtskarte der Besucherherkunft" class="rounded-lg shadow-md cursor-pointer w-full hidden" onclick="openModal(this.src)">
@@ -389,7 +389,7 @@
                             <p class="text-gray-600 space-y-3">
                                 <span>An der diesjährigen Generalversammlung kommt es zu wichtigen Wechseln. Wir danken unserer bisherigen Präsidentin <strong>Mirjana Lawless</strong> herzlich für ihren grossartigen Einsatz.</span>
                                 <span>Neu wird <strong>Christoph Notter</strong> (bisher Vorstandsmitglied) das Präsidium übernehmen. <strong>Marcel van de Ven</strong> bleibt dem Vorstand erfreulicherweise erhalten, und wir heissen <strong>David Clormann</strong> als neues Mitglied herzlich willkommen.</span>
-                                <span>Ein besonderer Dank gilt auch unserem scheidenden Revisor Ernst Krummenacher. Mit <strong>Philippe Hasler</strong> kandidiert ein erfahrener Nachfolger.</span>
+                                <span>Ein besonderer Dank gilt auch unserem scheidenden Revisor Ernst Krummenacher. Als Nachfolger konnten wir <strong>Philippe Hasler</strong> gewinnen.</span>
                             </p>
                         </div>
                         <div id="teamSlideshow" class="relative rounded-lg shadow-xl overflow-hidden md:col-span-2">
@@ -579,7 +579,7 @@
                         data: {
                             labels: ["25. Mai", "7. Sep", "21. Sep", "12. Okt", "26. Okt", "16. Nov", "30. Nov", "14. Dez", "28. Dez", "18. Jan", "1. Feb", "22. Feb", "8. März", "22. März", "5. April", "26. April", "10. Mai"],
                             datasets: [{
-                                label: 'Anzahl Reparaturen',
+                                label: 'Anzahl angenommener Gegenstände',
                                 data: eventData.map(d => d.value),
                                 backgroundColor: eventData.map(d => d.location === 'Neubad' ? colorBlue : colorPink),
                                 barPercentage: 0.5,
